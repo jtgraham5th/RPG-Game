@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row d-flex text-center mt-3 mb-3 no-gutters">
+            <div id="jon" class="card bg-light d-flex col-md-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="assets\images\jon-snow.jpg" width=100px />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Jon Snow</h4>
+                            <h6 class="card-subtitle text-secondary">Knows Nothing</h6>
+                            <h6 class="card-text text-center">HP:<span class="text-success"></span></h6>
+                            <h6 class="card-text text-center">ATP:<span class="text-dark"></span></h6>
+                            <h6 class="card-text text-center">CAP:<span class="text-warning"></span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="dany" class="card bg-light d-flex col-md-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="assets\images\daenerys.png" width=100px />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Daenerys Targeryn</h4>
+                            <h6 class="card-subtitle text-secondary">Breaker of Chains</h6>
+                            <h6 class="card-text text-center">HP:<span class="text-success"> </span></h6>
+                            <h6 class="card-text text-center">ATP:<span class="text-dark"></span></h6>
+                            <h6 class="card-text text-center">CAP:<span class="text-warning"></span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="cersi" class="card bg-light d-flex col-md-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="assets\images\cersi.png" width=100px />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Cersi Lannister</h4>
+                            <h6 class="card-subtitle text-secondary">A Lanister always repays his debts</h6>
+                            <h6 class="card-text text-center">HP: <span class="text-success"></span></h6>
+                            <h6 class="card-text text-center">ATP:<span class="text-dark"></span></h6>
+                            <h6 class="card-text text-center">CAP:<span class="text-warning"></span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="nightKing" class="card bg-light d-flex col-md-3">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="assets\images\knightking.jpg" width=100px />
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">The Night King</h4>
+                        <h6 class="card-subtitle text-secondary">Winter is Coming</h6>
+                        <h6 class="card-text text-center">HP: <span class="text-success">500</span></h6>
+                        <h6 class="card-text text-center">ATP: <span class="text-dark"></span></h6>
+                        <h6 class="card-text text-center">CAP: <span class="text-warning"></span></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div><button id="attack" class="d-none">ATTACK!</button></div>
+    
+    <div id="holder" class="row d-flex text-center mb-3 no-gutters border border-danger">
+    </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        //Select a character and move the rest to the defenders section
+        var characters = {
+            jon: {
+                HP: 200,
+                ATP: 50,
+                CAP: 30,
+            },
+            dany: {
+                HP: 300,
+                ATP: 70,
+                CAP: 10,
+            },
+            cersi: {
+                HP: 250,
+                ATP: 50,
+                CAP: 40,
+            },
+            nightKing: {
+                HP: 400,
+                ATP: 60,
+                CAP: 20,
+            },
+
+        };
+        var mainCharacter = "";
+        console.log("Jon HP:" + (characters.jon.HP + characters.jon.ATP))
+
+
+
+        $(".card").click(function () {
+            mainCharacter = this.id;
+            $(".card").not($("#" + this.id)).appendTo($("#holder"));
+            $(".card").not($("#" + this.id)).removeClass("bg-light");
+            $(".card").not($("#" + this.id)).addClass("bg-secondary");
+            $("#attack").removeClass("d-none");
+        });
+
+        $("#attack").click(function () {
+            $(".card:first-child").removeClass("bg-secondary");
+            $(".card:first-child").addClass("bg-danger");
+        })
+
+        // </script>
+</body>
+
+</html>
