@@ -27,9 +27,9 @@
                         <div class="card-body text-center">
                             <h4 class="card-title">Jon Snow</h4>
                             <h6 class="card-subtitle text-secondary">Knows Nothing</h6>
-                            <h6 class="card-text text-center">HP:<span class="text-success"></span></h6>
-                            <h6 class="card-text text-center">ATP:<span class="text-dark"></span></h6>
-                            <h6 class="card-text text-center">CAP:<span class="text-warning"></span></h6>
+                            <h6 class="card-text text-center" id="HP">HP:<span class="text-success"></span></h6>
+                            <h6 class="card-text text-center" id="ATP">ATP:<span class="text-dark"></span></h6>
+                            <h6 class="card-text text-center" id="CAP">CAP:<span class="text-warning"></span></h6>
                         </div>
                     </div>
                 </div>
@@ -43,9 +43,9 @@
                         <div class="card-body text-center">
                             <h4 class="card-title">Daenerys Targeryn</h4>
                             <h6 class="card-subtitle text-secondary">Breaker of Chains</h6>
-                            <h6 class="card-text text-center">HP:<span class="text-success"> </span></h6>
-                            <h6 class="card-text text-center">ATP:<span class="text-dark"></span></h6>
-                            <h6 class="card-text text-center">CAP:<span class="text-warning"></span></h6>
+                            <h6 class="card-text text-center" id="HP">HP:<span class="text-success"> </span></h6>
+                            <h6 class="card-text text-center" id="ATP">ATP:<span class="text-dark"></span></h6>
+                            <h6 class="card-text text-center" id="CAP">CAP:<span class="text-warning"></span></h6>
                         </div>
                     </div>
                 </div>
@@ -59,9 +59,9 @@
                         <div class="card-body text-center">
                             <h4 class="card-title">Cersi Lannister</h4>
                             <h6 class="card-subtitle text-secondary">A Lanister always repays his debts</h6>
-                            <h6 class="card-text text-center">HP: <span class="text-success"></span></h6>
-                            <h6 class="card-text text-center">ATP:<span class="text-dark"></span></h6>
-                            <h6 class="card-text text-center">CAP:<span class="text-warning"></span></h6>
+                            <h6 class="card-text text-center" id="HP">HP: <span class="text-success"></span></h6>
+                            <h6 class="card-text text-center" id="ATP">ATP:<span class="text-dark"></span></h6>
+                            <h6 class="card-text text-center" id="CAP">CAP:<span class="text-warning"></span></h6>
                         </div>
                     </div>
                 </div>
@@ -75,9 +75,9 @@
                     <div class="card-body text-center">
                         <h4 class="card-title">The Night King</h4>
                         <h6 class="card-subtitle text-secondary">Winter is Coming</h6>
-                        <h6 class="card-text text-center">HP: <span class="text-success">500</span></h6>
-                        <h6 class="card-text text-center">ATP: <span class="text-dark"></span></h6>
-                        <h6 class="card-text text-center">CAP: <span class="text-warning"></span></h6>
+                        <h6 class="card-text text-center" id="HP">HP: <span class="text-success">500</span></h6>
+                        <h6 class="card-text text-center" id="ATP">ATP: <span class="text-dark"></span></h6>
+                        <h6 class="card-text text-center" id="CAP">CAP: <span class="text-warning"></span></h6>
                     </div>
                 </div>
             </div>
@@ -95,30 +95,46 @@
         var characters = {
             jon: {
                 HP: 200,
-                ATP: 50,
+                ATP: 10,
                 CAP: 30,
             },
             dany: {
                 HP: 300,
-                ATP: 70,
+                ATP: 9,
                 CAP: 10,
             },
             cersi: {
                 HP: 250,
-                ATP: 50,
+                ATP: 7,
                 CAP: 40,
             },
             nightKing: {
                 HP: 400,
-                ATP: 60,
+                ATP: 6,
                 CAP: 20,
             },
 
         };
+        update();
         var mainCharacter = "";
         console.log("Jon HP:" + (characters.jon.HP + characters.jon.ATP))
-
-
+        function update(){
+        $("#jon #HP span").text(characters.jon.HP);
+        $("#jon #ATP span").text(characters.jon.ATP);
+        $("#jon #CAP span").text(characters.jon.CAP);
+        //----------
+        $("#dany #HP span").text(characters.dany.HP);
+        $("#dany #ATP span").text(characters.dany.ATP);
+        $("#dany #CAP span").text(characters.dany.CAP);
+        // ----------
+        $("#cersi #HP span").text(characters.cersi.HP);
+        $("#cersi #ATP span").text(characters.cersi.ATP);
+        $("#cersi #CAP span").text(characters.cersi.CAP);
+        // ----------
+        $("#nightKing #HP span").text(characters.nightKing.HP);
+        $("#nightKing #ATP span").text(characters.nightKing.ATP);
+        $("#nightKing #CAP span").text(characters.nightKing.CAP);
+        }
 
         $(".card").click(function () {
             mainCharacter = this.id;
@@ -131,8 +147,36 @@
         $("#attack").click(function () {
             $(".card:first-child").removeClass("bg-secondary");
             $(".card:first-child").addClass("bg-danger");
-        })
+            var fight = $("#holder .card:first-child").attr("id");
+            characters[fight].HP = ((characters[fight].HP) - (characters[mainCharacter].ATP))
+            console.log($("#holder .card:first-child").attr("id"))
+            console.log(fight +": " + characters[fight].HP)
+            characters[mainCharacter].ATP = (characters[mainCharacter].ATP + characters[mainCharacter].ATP);
+            console.log(characters[mainCharacter].ATP)
+            update();
 
+        });
+
+        function update(){
+        $("#jon #HP span").text(characters.jon.HP);
+        $("#jon #ATP span").text(characters.jon.ATP);
+        $("#jon #CAP span").text(characters.jon.CAP);
+        //----------
+        $("#dany #HP span").text(characters.dany.HP);
+        $("#dany #ATP span").text(characters.dany.ATP);
+        $("#dany #CAP span").text(characters.dany.CAP);
+        // ----------
+        $("#cersi #HP span").text(characters.cersi.HP);
+        $("#cersi #ATP span").text(characters.cersi.ATP);
+        $("#cersi #CAP span").text(characters.cersi.CAP);
+        // ----------
+        $("#nightKing #HP span").text(characters.nightKing.HP);
+        $("#nightKing #ATP span").text(characters.nightKing.ATP);
+        $("#nightKing #CAP span").text(characters.nightKing.CAP);
+        };
+        //Each time the player attacks, their character's Attack Power increases by its base Attack Power. 
+//   * For example, if the base Attack Power is 6, each attack will increase the Attack Power by 6 (12, 18, 24, 30 and so on).
+        
         // </script>
 </body>
 
