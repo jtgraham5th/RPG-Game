@@ -17,7 +17,7 @@
 
 <body>
     <div class="container">
-        <div class="row d-flex text-center mt-3 mb-3 no-gutters">
+        <div id="starterpack" class="row d-flex text-center mt-3 mb-3 no-gutters">
             <div id="jon" class="card bg-light d-flex col-md-3">
                 <div class="row no-gutters">
                     <div class="col-md-4">
@@ -83,9 +83,12 @@
             </div>
         </div>
     </div>
-    <div><button id="attack" class="d-none">ATTACK!</button></div>
+    <div class=>
+        <button id="attack" class="d-none">ATTACK!</button>
+        <div id="fighter" class="bg-danger border border-success mb-5">ducks</div>
+    </div>
     
-    <div id="holder" class="row d-flex text-center mb-3 no-gutters border border-danger">
+    <div id="holder" class="row d-flex text-center mb-3 no-gutters border border-danger"> ducks
     </div>
     </div>
 
@@ -95,12 +98,12 @@
         var characters = {
             jon: {
                 HP: 200,
-                ATP: 10,
+                ATP: 9,
                 CAP: 30,
             },
             dany: {
                 HP: 300,
-                ATP: 9,
+                ATP: 8,
                 CAP: 10,
             },
             cersi: {
@@ -117,6 +120,7 @@
         };
         update();
         var mainCharacter = "";
+        var fighter = "";
         console.log("Jon HP:" + (characters.jon.HP + characters.jon.ATP))
         function update(){
         $("#jon #HP span").text(characters.jon.HP);
@@ -135,24 +139,38 @@
         $("#nightKing #ATP span").text(characters.nightKing.ATP);
         $("#nightKing #CAP span").text(characters.nightKing.CAP);
         }
-
-        $(".card").click(function () {
-            mainCharacter = this.id;
-            $(".card").not($("#" + this.id)).appendTo($("#holder"));
-            $(".card").not($("#" + this.id)).removeClass("bg-light");
-            $(".card").not($("#" + this.id)).addClass("bg-secondary");
-            $("#attack").removeClass("d-none");
+        
+        $("#holder.card").click(function () {
+                
+                // $(this)
         });
-
+        $(".card").click(function () {
+            if ( mainCharacter === "") {
+                mainCharacter = this.id;
+                console.log(mainCharacter + " is the selected character.")
+                $(".card").not($("#" + this.id)).appendTo($("#holder"));
+                $(".card").not($("#" + this.id)).removeClass("bg-light");
+                $(".card").not($("#" + this.id)).addClass("bg-secondary");
+                $("#attack").removeClass("d-none");
+            } else if (mainCharacter) {
+                fighter = this.id;
+                console.log("----");
+                $(this).appendTo($("#fighter"));
+                
+            }
+        });
+        
+        
+        
+            
+        
         $("#attack").click(function () {
             $(".card:first-child").removeClass("bg-secondary");
             $(".card:first-child").addClass("bg-danger");
             var fight = $("#holder .card:first-child").attr("id");
             characters[fight].HP = ((characters[fight].HP) - (characters[mainCharacter].ATP))
-            console.log($("#holder .card:first-child").attr("id"))
-            console.log(fight +": " + characters[fight].HP)
             characters[mainCharacter].ATP = (characters[mainCharacter].ATP + characters[mainCharacter].ATP);
-            console.log(characters[mainCharacter].ATP)
+            characters
             update();
 
         });
