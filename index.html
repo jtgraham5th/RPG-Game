@@ -85,10 +85,10 @@
     </div>
     <div class=>
         <button id="attack" class="d-none">ATTACK!</button>
-        <div id="fighter" class="bg-danger border border-success mb-5">ducks</div>
+        <div id="fighter" class="row d-flex border border-danger mb-5">fighter</div>
     </div>
     
-    <div id="holder" class="row d-flex text-center mb-3 no-gutters border border-danger"> ducks
+    <div id="holder" class="row d-flex text-center mb-3 no-gutters border border-danger"> holder
     </div>
     </div>
 
@@ -121,6 +121,7 @@
         update();
         var mainCharacter = "";
         var fighter = "";
+        var fighterHP = "";
         console.log("Jon HP:" + (characters.jon.HP + characters.jon.ATP))
         function update(){
         $("#jon #HP span").text(characters.jon.HP);
@@ -153,24 +154,37 @@
                 $(".card").not($("#" + this.id)).addClass("bg-secondary");
                 $("#attack").removeClass("d-none");
             } else if (mainCharacter) {
-                fighter = this.id;
-                console.log("----");
-                $(this).appendTo($("#fighter"));
-                
-            }
-        });
-        
-        
-        
-            
+                if (fighterHP > 0) {
+                    alert("You are already in battle and may not choose another character until you defeat the current one.");
+                } else {
+                    fighter = this.id;
+                    fighterHP = characters[fighter].HP;
+                    console.log("----");
+                    console.log(fighterHP);
+                    $(this).appendTo($("#fighter"));
+            }  
+        }
+    });
         
         $("#attack").click(function () {
-            $(".card:first-child").removeClass("bg-secondary");
-            $(".card:first-child").addClass("bg-danger");
-            var fight = $("#holder .card:first-child").attr("id");
-            characters[fight].HP = ((characters[fight].HP) - (characters[mainCharacter].ATP))
+            // $(".card:first-child").removeClass("bg-secondary");
+            // $(".card:first-child").addClass("bg-danger");
+            // var fight = $("#holder .card:first-child").attr("id");
+            
+            
+            characters[fighter].HP = ((characters[fighter].HP) - (characters[mainCharacter].ATP))
             characters[mainCharacter].ATP = (characters[mainCharacter].ATP + characters[mainCharacter].ATP);
-            characters
+            characters[mainCharacter].HP = (characters[mainCharacter].HP - characters[fighter].CAP);
+            fighterHP = characters[fighter].HP;
+            console.log(fighterHP);
+            if (characters[mainCharacter].HP < 0) {
+                alert ("You Lose try again");
+            } else if (fighterHP <= 0) {
+                ($("#" + fighter)).removeClass("d-flex");
+                ($("#" + fighter)).addClass("d-none");
+                alert ("You defeated " + fighter + "! You are one step closer to the Iron Throne! Select another character.");
+                fighterHP = "";
+            };
             update();
 
         });
@@ -191,6 +205,7 @@
         $("#nightKing #HP span").text(characters.nightKing.HP);
         $("#nightKing #ATP span").text(characters.nightKing.ATP);
         $("#nightKing #CAP span").text(characters.nightKing.CAP);
+        
         };
         //Each time the player attacks, their character's Attack Power increases by its base Attack Power. 
 //   * For example, if the base Attack Power is 6, each attack will increase the Attack Power by 6 (12, 18, 24, 30 and so on).
