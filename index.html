@@ -15,15 +15,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 
-<body>
-    <div class="container">
-        <div id="starterpack" class="row d-flex text-center mt-3 mb-3 no-gutters">
-            <div id="jon" class="card bg-light d-flex col-md-3">
+<body style="background-image: url(assets/images/background.jpg); background-size: cover; background-repeat: no-repeat" >
+    <div class="container" style="max-width:95%">
+        <div id="starterpack" class="row-fluid d-flex text-center mt-3 mb-3">
+            <div id="Jon" class="card bg-light d-flex col-md-3 m-1">
                 <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="assets\images\jon-snow.jpg" width=100px />
+                    <div class="d-flex col-md-5 flex-grow-1">
+                        <img src="assets\images\jon-snow.jpg" class="w-100"/>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <div class="card-body text-center">
                             <h4 class="card-title">Jon Snow</h4>
                             <h6 class="card-subtitle text-secondary">Knows Nothing</h6>
@@ -31,15 +31,16 @@
                             <h6 class="card-text text-center" id="ATP">ATP:<span class="text-dark"></span></h6>
                             <h6 class="card-text text-center" id="CAP">CAP:<span class="text-warning"></span></h6>
                         </div>
+                        
                     </div>
                 </div>
             </div>
-            <div id="dany" class="card bg-light d-flex col-md-3">
+            <div id="Danerys" class="card bg-light d-flex col-md-3 m-1">
                 <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="assets\images\daenerys.png" width=100px />
+                    <div class="d-flex col-md-5 flex-grow-1">
+                        <img src="assets\images\daenerys.png" class="w-100" />
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <div class="card-body text-center">
                             <h4 class="card-title">Daenerys Targeryn</h4>
                             <h6 class="card-subtitle text-secondary">Breaker of Chains</h6>
@@ -50,15 +51,15 @@
                     </div>
                 </div>
             </div>
-            <div id="cersi" class="card bg-light d-flex col-md-3">
+            <div id="Cersi" class="card bg-light d-flex col-md-3 m-1">
                 <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="assets\images\cersi.png" width=100px />
+                    <div class="d-flex col-md-5 flex-grow-1">
+                        <img src="assets\images\cersi.png" class="w-100" />
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <div class="card-body text-center">
                             <h4 class="card-title">Cersi Lannister</h4>
-                            <h6 class="card-subtitle text-secondary">A Lanister always repays his debts</h6>
+                            <h6 class="card-subtitle text-secondary">A Lanister always repays her debts</h6>
                             <h6 class="card-text text-center" id="HP">HP: <span class="text-success"></span></h6>
                             <h6 class="card-text text-center" id="ATP">ATP:<span class="text-dark"></span></h6>
                             <h6 class="card-text text-center" id="CAP">CAP:<span class="text-warning"></span></h6>
@@ -66,29 +67,36 @@
                     </div>
                 </div>
             </div>
-            <div id="nightKing" class="card bg-light d-flex col-md-3">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img src="assets\images\knightking.jpg" width=100px />
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body text-center">
-                        <h4 class="card-title">The Night King</h4>
-                        <h6 class="card-subtitle text-secondary">Winter is Coming</h6>
-                        <h6 class="card-text text-center" id="HP">HP: <span class="text-success">500</span></h6>
-                        <h6 class="card-text text-center" id="ATP">ATP: <span class="text-dark"></span></h6>
-                        <h6 class="card-text text-center" id="CAP">CAP: <span class="text-warning"></span></h6>
+            <div id="NightKing" class="card bg-light d-flex col-md-3 m-1">
+                <div class="row no-gutters">
+                    <div class="d-flex col-md-5 flex-grow-1">
+                        <img src="assets\images\kNightKing.jpg" class="w-100" />
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">The Night King</h4>
+                            <h6 class="card-subtitle text-secondary">Winter is Coming</h6>
+                            <h6 class="card-text text-center" id="HP">HP: <span class="text-success">500</span></h6>
+                            <h6 class="card-text text-center" id="ATP">ATP: <span class="text-dark"></span></h6>
+                            <h6 class="card-text text-center" id="CAP">CAP: <span class="text-warning"></span></h6>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div id="attackHolder" class="d-none flex-column col-md-4 justify-content-center">
+                <div class="align-self-center p-4">
+                    <button id="attack" class="btn btn-lg">ATTACK!</button>
+                </div>
+                <div id="gameText" class="bg-light w-100 h-100 h6 p-4 align-self-center justify-content-center border">
+                    Welcome to the Game of Thrones RPG
+                </div>
+
+            </div>
         </div>
+        <div id="fighter" class="row d-flex text-center mt-3 mb-3 no-gutters mb-5 justify-content-center"></div>
+
     </div>
-    <div class=>
-        <button id="attack" class="d-none">ATTACK!</button>
-        <div id="fighter" class="row d-flex border border-danger mb-5">fighter</div>
-    </div>
-    
-    <div id="holder" class="row d-flex text-center mb-3 no-gutters border border-danger"> holder
+    <div id="holder" class="row d-flex text-center mb-3 no-gutters justify-content-center">
     </div>
     </div>
 
@@ -96,22 +104,22 @@
     <script type="text/javascript">
         //Select a character and move the rest to the defenders section
         var characters = {
-            jon: {
+            Jon: {
                 HP: 200,
                 ATP: 9,
                 CAP: 30,
             },
-            dany: {
+            Danerys: {
                 HP: 300,
                 ATP: 8,
                 CAP: 10,
             },
-            cersi: {
+            Cersi: {
                 HP: 250,
                 ATP: 7,
                 CAP: 40,
             },
-            nightKing: {
+            NightKing: {
                 HP: 400,
                 ATP: 6,
                 CAP: 20,
@@ -122,94 +130,104 @@
         var mainCharacter = "";
         var fighter = "";
         var fighterHP = "";
-        console.log("Jon HP:" + (characters.jon.HP + characters.jon.ATP))
-        function update(){
-        $("#jon #HP span").text(characters.jon.HP);
-        $("#jon #ATP span").text(characters.jon.ATP);
-        $("#jon #CAP span").text(characters.jon.CAP);
-        //----------
-        $("#dany #HP span").text(characters.dany.HP);
-        $("#dany #ATP span").text(characters.dany.ATP);
-        $("#dany #CAP span").text(characters.dany.CAP);
-        // ----------
-        $("#cersi #HP span").text(characters.cersi.HP);
-        $("#cersi #ATP span").text(characters.cersi.ATP);
-        $("#cersi #CAP span").text(characters.cersi.CAP);
-        // ----------
-        $("#nightKing #HP span").text(characters.nightKing.HP);
-        $("#nightKing #ATP span").text(characters.nightKing.ATP);
-        $("#nightKing #CAP span").text(characters.nightKing.CAP);
+        function update() {
+            $("#Jon #HP span").text(characters.Jon.HP);
+            $("#Jon #ATP span").text(characters.Jon.ATP);
+            $("#Jon #CAP span").text(characters.Jon.CAP);
+            //----------
+            $("#Danerys #HP span").text(characters.Danerys.HP);
+            $("#Danerys #ATP span").text(characters.Danerys.ATP);
+            $("#Danerys #CAP span").text(characters.Danerys.CAP);
+            // ----------
+            $("#Cersi #HP span").text(characters.Cersi.HP);
+            $("#Cersi #ATP span").text(characters.Cersi.ATP);
+            $("#Cersi #CAP span").text(characters.Cersi.CAP);
+            // ----------
+            $("#NightKing #HP span").text(characters.NightKing.HP);
+            $("#NightKing #ATP span").text(characters.NightKing.ATP);
+            $("#NightKing #CAP span").text(characters.NightKing.CAP);
         }
-        
+
         $("#holder.card").click(function () {
-                
-                // $(this)
+
+            // $(this)
         });
         $(".card").click(function () {
-            if ( mainCharacter === "") {
+            if (mainCharacter === "") {
                 mainCharacter = this.id;
                 console.log(mainCharacter + " is the selected character.")
+                $("#" + this.id).appendTo($("#fighter"));
                 $(".card").not($("#" + this.id)).appendTo($("#holder"));
                 $(".card").not($("#" + this.id)).removeClass("bg-light");
                 $(".card").not($("#" + this.id)).addClass("bg-secondary");
-                $("#attack").removeClass("d-none");
+                $("#attackHolder").appendTo($("#fighter"));
+                $("#attackHolder").removeClass("d-none");
+                $("#attackHolder").addClass("d-flex");
             } else if (mainCharacter) {
                 if (fighterHP > 0) {
-                    alert("You are already in battle and may not choose another character until you defeat the current one.");
+                    $("#gameText").text("You are already in battle and may not choose another character until you defeat the current one.");
                 } else {
                     fighter = this.id;
                     fighterHP = characters[fighter].HP;
                     console.log("----");
                     console.log(fighterHP);
+                    console.log(fighter);
+                    $("#" + fighter).removeClass("bg-secondary");
+                    $("#" + fighter).addClass("bg-danger");
                     $(this).appendTo($("#fighter"));
-            }  
-        }
-    });
-        
+                    
+
+                }
+            }
+        });
+
         $("#attack").click(function () {
             // $(".card:first-child").removeClass("bg-secondary");
             // $(".card:first-child").addClass("bg-danger");
             // var fight = $("#holder .card:first-child").attr("id");
-            
-            
+            console.log(fighterHP);
+            if (characters[mainCharacter].HP < 0) {
+                $("#gameText").text("You Lose try again");
+            } else if (fighter === "") {
+                $("#gameText").text("You must select another character before you begin");
+            } else if (fighterHP <= 0) {
+                ($("#" + fighter)).removeClass("d-flex");
+                ($("#" + fighter)).addClass("d-none");
+                $("#gameText").text("You defeated " + fighter + "! You are one step closer to the Iron Throne! Select another character.");
+                fighterHP = "";
+                fighter = "";
+            } else {
             characters[fighter].HP = ((characters[fighter].HP) - (characters[mainCharacter].ATP))
             characters[mainCharacter].ATP = (characters[mainCharacter].ATP + characters[mainCharacter].ATP);
             characters[mainCharacter].HP = (characters[mainCharacter].HP - characters[fighter].CAP);
             fighterHP = characters[fighter].HP;
-            console.log(fighterHP);
-            if (characters[mainCharacter].HP < 0) {
-                alert ("You Lose try again");
-            } else if (fighterHP <= 0) {
-                ($("#" + fighter)).removeClass("d-flex");
-                ($("#" + fighter)).addClass("d-none");
-                alert ("You defeated " + fighter + "! You are one step closer to the Iron Throne! Select another character.");
-                fighterHP = "";
-            };
+            $("#gameText").html("You attacked " + fighter + " for " + characters[mainCharacter].ATP + " damage.<br>" + fighter + " attacked you back for " + characters[fighter].CAP + ".")
             update();
+            }
 
         });
 
-        function update(){
-        $("#jon #HP span").text(characters.jon.HP);
-        $("#jon #ATP span").text(characters.jon.ATP);
-        $("#jon #CAP span").text(characters.jon.CAP);
-        //----------
-        $("#dany #HP span").text(characters.dany.HP);
-        $("#dany #ATP span").text(characters.dany.ATP);
-        $("#dany #CAP span").text(characters.dany.CAP);
-        // ----------
-        $("#cersi #HP span").text(characters.cersi.HP);
-        $("#cersi #ATP span").text(characters.cersi.ATP);
-        $("#cersi #CAP span").text(characters.cersi.CAP);
-        // ----------
-        $("#nightKing #HP span").text(characters.nightKing.HP);
-        $("#nightKing #ATP span").text(characters.nightKing.ATP);
-        $("#nightKing #CAP span").text(characters.nightKing.CAP);
-        
+        function update() {
+            $("#Jon #HP span").text(characters.Jon.HP);
+            $("#Jon #ATP span").text(characters.Jon.ATP);
+            $("#Jon #CAP span").text(characters.Jon.CAP);
+            //----------
+            $("#Danerys #HP span").text(characters.Danerys.HP);
+            $("#Danerys #ATP span").text(characters.Danerys.ATP);
+            $("#Danerys #CAP span").text(characters.Danerys.CAP);
+            // ----------
+            $("#Cersi #HP span").text(characters.Cersi.HP);
+            $("#Cersi #ATP span").text(characters.Cersi.ATP);
+            $("#Cersi #CAP span").text(characters.Cersi.CAP);
+            // ----------
+            $("#NightKing #HP span").text(characters.NightKing.HP);
+            $("#NightKing #ATP span").text(characters.NightKing.ATP);
+            $("#NightKing #CAP span").text(characters.NightKing.CAP);
+
         };
-        //Each time the player attacks, their character's Attack Power increases by its base Attack Power. 
+        //Each time the player attacks, their character's Attack Power increases by its base Attack Power.
 //   * For example, if the base Attack Power is 6, each attack will increase the Attack Power by 6 (12, 18, 24, 30 and so on).
-        
+
         // </script>
 </body>
 
