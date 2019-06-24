@@ -16,8 +16,9 @@
 </head>
 
 <body style="background-image: url(assets/images/background.jpg); background-size: cover; background-repeat: no-repeat" >
+    <div class="header h1 d-flex justify-content-between border-bottom border-dark mb-5 pr-2" style="color:white; height:60px; background-color: black;"><div><img src="assets/images/header.jpg"  width=50% height=100% class="border-bottom border-dark"></div> Game of thrones RPG</div>
     <div class="container" style="max-width:95%">
-        <div id="starterpack" class="row-fluid d-flex text-center mt-3 mb-3">
+        <div id="starterpack" class="row-fluid d-flex text-center mt-3 mb-3 no-gutters">
             <div id="Jon" class="card bg-light d-flex col-md-3 m-1">
                 <div class="row no-gutters">
                     <div class="d-flex col-md-5 flex-grow-1">
@@ -51,14 +52,14 @@
                     </div>
                 </div>
             </div>
-            <div id="Cersi" class="card bg-light d-flex col-md-3 m-1">
+            <div id="Cersei" class="card bg-light d-flex col-md-3 m-1">
                 <div class="row no-gutters">
                     <div class="d-flex col-md-5 flex-grow-1">
-                        <img src="assets\images\cersi.png" class="w-100" />
+                        <img src="assets\images\Cersei.png" class="w-100" />
                     </div>
                     <div class="col-md-7">
                         <div class="card-body text-center">
-                            <h4 class="card-title">Cersi Lannister</h4>
+                            <h4 class="card-title">Cersei Lannister</h4>
                             <h6 class="card-subtitle text-secondary">A Lanister always repays her debts</h6>
                             <h6 class="card-text text-center" id="HP">HP: <span class="text-success"></span></h6>
                             <h6 class="card-text text-center" id="ATP">ATP:<span class="text-dark"></span></h6>
@@ -96,7 +97,8 @@
         <div id="fighter" class="row d-flex text-center mt-3 mb-3 no-gutters mb-5 justify-content-center"></div>
 
     </div>
-    <div id="holder" class="row d-flex text-center mb-3 no-gutters justify-content-center">
+    <div id="holder" class="row-fluid d-flex text-center mb-3 no-gutters justify-content-center">
+        <img id="outcome" src="" style="display:none" width=30% height=30% class="border border-light">
     </div>
     </div>
 
@@ -114,7 +116,7 @@
                 ATP: 8,
                 CAP: 10,
             },
-            Cersi: {
+            Cersei: {
                 HP: 250,
                 ATP: 7,
                 CAP: 40,
@@ -130,6 +132,11 @@
         var mainCharacter = "";
         var fighter = "";
         var fighterHP = "";
+        var defeats = 0;
+        var audioElement = document.createElement("audio");
+
+
+        
         function update() {
             $("#Jon #HP span").text(characters.Jon.HP);
             $("#Jon #ATP span").text(characters.Jon.ATP);
@@ -139,19 +146,15 @@
             $("#Danerys #ATP span").text(characters.Danerys.ATP);
             $("#Danerys #CAP span").text(characters.Danerys.CAP);
             // ----------
-            $("#Cersi #HP span").text(characters.Cersi.HP);
-            $("#Cersi #ATP span").text(characters.Cersi.ATP);
-            $("#Cersi #CAP span").text(characters.Cersi.CAP);
+            $("#Cersei #HP span").text(characters.Cersei.HP);
+            $("#Cersei #ATP span").text(characters.Cersei.ATP);
+            $("#Cersei #CAP span").text(characters.Cersei.CAP);
             // ----------
             $("#NightKing #HP span").text(characters.NightKing.HP);
             $("#NightKing #ATP span").text(characters.NightKing.ATP);
             $("#NightKing #CAP span").text(characters.NightKing.CAP);
         }
 
-        $("#holder.card").click(function () {
-
-            // $(this)
-        });
         $(".card").click(function () {
             if (mainCharacter === "") {
                 mainCharacter = this.id;
@@ -175,27 +178,49 @@
                     $("#" + fighter).removeClass("bg-secondary");
                     $("#" + fighter).addClass("bg-danger");
                     $(this).appendTo($("#fighter"));
-                    
-
                 }
             }
+            
         });
 
         $("#attack").click(function () {
-            // $(".card:first-child").removeClass("bg-secondary");
-            // $(".card:first-child").addClass("bg-danger");
-            // var fight = $("#holder .card:first-child").attr("id");
             console.log(fighterHP);
-            if (characters[mainCharacter].HP < 0) {
-                $("#gameText").text("You Lose try again");
+            if (characters[mainCharacter].HP <= 0) {
+                $("#gameText").addClass("text-danger border-danger")
+                $("#gameText").html("<h3>'When You Play The Game Of Thrones, You Win Or You Die'...and You Died</h3>");
+                $("#attackHolder").removeClass("d-flex");
+                $("#attackHolder").addClass("d-none");
+                $("#holder").removeClass("d-flex");
+                $("#holder").addClass("d-none");
+                $("#" + mainCharacter).addClass("align-self-center");
+                $("#gameText").appendTo("#starterpack");
+                $("#outcome").appendTo("#fighter");
+                $("#outcome").attr("src","assets/images/" + mainCharacter + "dead.jpg");
+                $("#outcome").fadeIn(3000);
             } else if (fighter === "") {
                 $("#gameText").text("You must select another character before you begin");
             } else if (fighterHP <= 0) {
                 ($("#" + fighter)).removeClass("d-flex");
                 ($("#" + fighter)).addClass("d-none");
                 $("#gameText").text("You defeated " + fighter + "! You are one step closer to the Iron Throne! Select another character.");
+                defeats++;
+                console.log(defeats)
                 fighterHP = "";
                 fighter = "";
+                if (defeats >= 3) {
+                    $("#gameText").addClass("text-success border-success")
+                    $("#gameText").html("<h3>You Won! You defeated all the characters to earn your rightful place on the iron throne.</h3>")
+                    $("#attackHolder").removeClass("d-flex");
+                    $("#attackHolder").addClass("d-none");
+                    $("#" + mainCharacter).addClass("align-self-center");
+                    $("#gameText").appendTo("#starterpack");
+                    $("#outcome").appendTo("#fighter");
+                    $("#outcome").attr("src","assets/images/" + mainCharacter + "throne.jpg");
+                    $("#outcome").fadeIn(3000);
+                    
+                    
+                    
+                }
             } else {
             characters[fighter].HP = ((characters[fighter].HP) - (characters[mainCharacter].ATP))
             characters[mainCharacter].ATP = (characters[mainCharacter].ATP + characters[mainCharacter].ATP);
@@ -216,9 +241,9 @@
             $("#Danerys #ATP span").text(characters.Danerys.ATP);
             $("#Danerys #CAP span").text(characters.Danerys.CAP);
             // ----------
-            $("#Cersi #HP span").text(characters.Cersi.HP);
-            $("#Cersi #ATP span").text(characters.Cersi.ATP);
-            $("#Cersi #CAP span").text(characters.Cersi.CAP);
+            $("#Cersei #HP span").text(characters.Cersei.HP);
+            $("#Cersei #ATP span").text(characters.Cersei.ATP);
+            $("#Cersei #CAP span").text(characters.Cersei.CAP);
             // ----------
             $("#NightKing #HP span").text(characters.NightKing.HP);
             $("#NightKing #ATP span").text(characters.NightKing.ATP);
@@ -228,7 +253,7 @@
         //Each time the player attacks, their character's Attack Power increases by its base Attack Power.
 //   * For example, if the base Attack Power is 6, each attack will increase the Attack Power by 6 (12, 18, 24, 30 and so on).
 
-        // </script>
+        </script>
 </body>
 
 </html>
